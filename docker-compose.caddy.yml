@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  caddy:
+    container_name: caddy
+    image: "wemakeservices/caddy-gen:latest"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - caddy-certificates:/data/caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - server
+  server:
+    labels:
+      virtual.host: "<your domain>"
+      virtual.port: "7777"
+      virtual.tls-email: "<your email; required>"
+
+volumes:
+  caddy-certificates:
+    driver: local
