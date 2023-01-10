@@ -1,17 +1,16 @@
 version: "3.7"
 services:
   server:
-    image: 60bc2f131a01fcaf868f221560ea61e52db24b4f94f40e2fb57eea3a94078c98
+    image: ylihallila/openmicroanatomy-server:latest
     restart: always
     ports:
       # Change to "127.0.0.1:7777:7777" after enabling Reverse Proxy (see docs) to prevent insecure connections using HTTP.
       - "7777:7777"
     volumes:
-      - ./:/home/oma/server
-    #env_file: openmicroanatomy-conf.env
-  #tiler:
-  #  image: 60bc2f131a01fcaf868f221560ea61e52db24b4f94f40e2fb57eea3a94078c98
-  #  restart: always
-  #  volumes:
-  #    - ./:/home/oma/server
-  #  command: ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/openmicroanatomy-server.jar", "--tiler"]
+      - ./server-data:/home/oma/server
+  tiler:
+    image: ylihallila/openmicroanatomy-server:latest
+    restart: always
+    volumes:
+      - ./server-data:/home/oma/server
+    command: ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/openmicroanatomy-server.jar", "--tiler"]
