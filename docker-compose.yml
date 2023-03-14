@@ -8,6 +8,8 @@ services:
       - "7777:7777"
     volumes:
       - ./server-data:/home/oma/server
+    environment:
+      - JAVA_TOOL_OPTIONS="-XX:MinRAMPercentage=50.0 -XX:MaxRAMPercentage=90.0"
   tiler:
     image: ylihallila/openmicroanatomy-server:latest
     restart: always
