@@ -10,9 +10,3 @@ services:
       - ./server-data:/home/oma/server
     environment:
       - JAVA_TOOL_OPTIONS="-XX:MinRAMPercentage=50.0 -XX:MaxRAMPercentage=90.0"
-  tiler:
-    image: ylihallila/openmicroanatomy-server:latest
-    restart: always
-    volumes:
-      - ./server-data:/home/oma/server
-    command: ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app/openmicroanatomy-server.jar", "--tiler"]
