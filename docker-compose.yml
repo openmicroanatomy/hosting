@@ -9,4 +9,4 @@ services:
     volumes:
       - ./server-data:/home/oma/server
     environment:
-      - JAVA_TOOL_OPTIONS="-XX:MinRAMPercentage=50.0 -XX:MaxRAMPercentage=90.0"
+      - JAVA_TOOL_OPTIONS=-XX:MinRAMPercentage=50.0 -XX:MaxRAMPercentage=90.0
