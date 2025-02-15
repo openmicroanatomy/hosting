@@ -7,6 +7,9 @@ services:
       # Change to "127.0.0.1:7777:7777" after enabling Reverse Proxy (see docs) to prevent insecure connections using HTTP.
       - "7777:7777"
     volumes:
-      - ./server-data:/home/oma/server
+      - server-data:/home/oma/server
     environment:
       - JAVA_TOOL_OPTIONS=-XX:MinRAMPercentage=50.0 -XX:MaxRAMPercentage=90.0
+    # command: sh -c "java -XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport -Djava.security.egd=file:/dev/./urandom -jar /app/openmicroanatomy-server.jar"
+volumes:
+  server-data:
